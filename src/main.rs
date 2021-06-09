@@ -4,17 +4,16 @@ fn main() {
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed");
     let size_usize: Vec<_> = input.split_whitespace().map(|x| x.parse::<usize>().expect("Falied")).collect();
-    let mut map = vec![0u64; size_usize[1]];
+    let mut map = vec![0u64; size_usize[0]];
     let white_map:u64 = 0xAA55AA55AA55AA55;
 
     // Read map
     for i in 0usize..size_usize[0]{
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed");
-        let line:Vec<_> = input.chars().collect();
-        for j in 0usize..size_usize[1]{
+        for c in input.trim().chars(){
             map[i] = map[i] << 1u64;
-            if let 'W' = line[j]{
+            if let 'W' = c{
                 map[i] += 1u64;
             }
         }
